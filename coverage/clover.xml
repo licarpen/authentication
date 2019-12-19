@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1576794520589" clover="3.2.0">
-  <project timestamp="1576794520589" name="All files">
+<coverage generated="1576795435964" clover="3.2.0">
+  <project timestamp="1576795435964" name="All files">
     <metrics statements="44" coveredstatements="34" conditionals="7" coveredconditionals="1" methods="10" coveredmethods="7" elements="61" coveredelements="42" complexity="0" loc="44" ncloc="44" packages="5" files="6" classes="6"/>
     <package name="lib">
       <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -46,7 +46,7 @@
         <line num="5" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
       </file>
     </package>
