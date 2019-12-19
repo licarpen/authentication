@@ -39,30 +39,30 @@ describe('app authentication routes', () => {
   it('returns error for invalid email login', async() => {
     await User.create({ email: 'me@me.com', password: '123' });
     return request(app)
-      .post('api/v1/auth/login')
+      .post('/api/v1/auth/login')
       .send({ email: 'me', password: '123' })
       .then(res => {
-        expect(res.body).toEqual({ message: 'Invalid Email/Password', status: 401 });
+        expect(res.body).toEqual({ message: 'Invalid email/password', status: 401 });
       });
   });
 
   it('returns error for invalid password login', async() => {
     await User.create({ email: 'me@me.com', password: '123' });
     return request(app)
-      .post('api/v1/auth/login')
+      .post('/api/v1/auth/login')
       .send({ email: 'me@me.com', password: 'abc' })
       .then(res => {
-        expect(res.body).toEqual({ message: 'Invalid Email/Password', status: 401 });
+        expect(res.body).toEqual({ message: 'Invalid email/password', status: 401 });
       });
   });
 
   it('logs in a valid user', async() => {
     const user = await User.create({ email: 'me@me.com', password: '123' });
     return request(app)
-      .post('api/v1/auth/login')
+      .post('/api/v1/auth/login')
       .send({ email: 'me@me.com', password: '123' })
       .then(res => {
-        expect(res.body).toEqual({ email: user.email, _id: user._id, __v: 0 });
+        expect(res.body).toEqual({ email: user.email, _id: user.id, __v: 0 });
       });
   });
 });
