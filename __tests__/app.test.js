@@ -29,6 +29,7 @@ describe('app authentication routes', () => {
       .post('/api/v1/auth/signup')
       .send({ email: 'me@me.com', password: '123' })
       .then(res => {
+        expect(res.header['set-cookie'][0]).toEqual(expect.stringContaining('session='));
         expect(res.body).toEqual({
           _id: expect.any(String),
           email: 'me@me.com',
@@ -62,7 +63,31 @@ describe('app authentication routes', () => {
       .post('/api/v1/auth/login')
       .send({ email: 'me@me.com', password: '123' })
       .then(res => {
+        expect(res.header['set-cookie'][0]).toEqual(expect.stringContaining('session='));
         expect(res.body).toEqual({ email: user.email, _id: user.id, __v: 0 });
+      });
+  });
+
+  it('verifies that a user is logged in', async() => {
+    const user = await User.create({
+      email: 'me@me.com',
+      password: '123'
+    });
+    // using agent prevents erasure of cookies between routes
+    const agent = request.agent(app);
+
+    await agent
+      .post('/api/v1/auth/login')
+      .send({ email: 'me@me.com', password: '123' });
+    
+    return agent
+      .get('/api/v1/auth/verify')
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: user.id,
+          email: 'me@me.com',
+          __v: 0
+        });
       });
   });
 });
