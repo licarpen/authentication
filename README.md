@@ -1,5 +1,5 @@
 # Authentication
-An exericise in implementing user authentiticaion on the backend with signup, login, and verification. 
+An exericise in implementing user authentication on the backend with signup, login, and verification. Passwords are hashed and session cookies are set on signup/login.  Supertest is used for testing.
 
 ## Technology
 
